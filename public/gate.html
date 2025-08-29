@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Enter Password</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0
+        }
+
+        form {
+            display: grid;
+            gap: .8rem;
+            width: min(320px, 90vw)
+        }
+
+        input,
+        button {
+            padding: .7rem .9rem;
+            border: 1px solid #ddd;
+            border-radius: .6rem
+        }
+
+        button {
+            background: #3b82f6;
+            color: #fff;
+            border: 0;
+            cursor: pointer
+        }
+
+        .err {
+            color: #b91c1c;
+            font-size: .9rem
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/login" method="post" autocomplete="off">
+        <h1>Access chat</h1>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Continue</button>
+        <div class="err" id="err"></div>
+    </form>
+    <script>
+        if (new URLSearchParams(location.search).get("e") === "1")
+            document.getElementById("err").textContent = "Wrong password. Try again.";
+    </script>
+</body>
+
+</html>

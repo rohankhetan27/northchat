@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gmail</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 2rem;
+        }
+
+        h1 {
+            margin: 0 0 1rem;
+        }
+
+        #chatLog {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem;
+            display: grid;
+            gap: .4rem;
+            max-height: 60vh;
+            overflow: auto;
+        }
+
+        .bubble {
+            max-width: 70%;
+            padding: .6rem .8rem;
+            border-radius: 1rem;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        .me {
+            justify-self: end;
+            background: #e0ecff;
+            border-top-right-radius: .3rem;
+        }
+
+        .other {
+            justify-self: start;
+            background: #f3f4f6;
+            border-top-left-radius: .3rem;
+        }
+
+        .system {
+            justify-self: center;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: .9rem;
+        }
+
+        #chatForm {
+            display: flex;
+            gap: .5rem;
+            margin-bottom: 1rem;
+        }
+
+        #msgInput {
+            flex: 1;
+            resize: none;
+            overflow: hidden;
+            min-height: 2rem;
+            max-height: 6rem;
+            padding: .6rem .8rem;
+            border: 1px solid #ddd;
+            border-radius: 1.5rem;
+        }
+
+        #msgInput::placeholder {
+            color: #9ca3af;
+            font-size: .9rem;
+        }
+
+        #sendBtn {
+            padding: .6rem .9rem;
+            border: 0;
+            border-radius: .6rem;
+            background: #3b82f6;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #sendBtn:hover {
+            filter: brightness(.95);
+        }
+
+        /* Presence list */
+        #userList {
+            list-style: none;
+            padding: 0;
+            margin: .5rem 0 0;
+        }
+
+        #userList li {
+            margin: .2rem 0;
+            font-size: .95rem;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: .6rem;
+            height: .6rem;
+            border-radius: 50%;
+            margin-right: .4rem;
+            vertical-align: middle;
+            background: #10b981;
+        }
+
+        /* green */
+        .inactive .status-dot {
+            background: #9ca3af;
+        }
+
+        /* gray */
+        .inactive .name {
+            color: #6b7280;
+        }
+
+        .other .name {
+            font-size: .75rem;
+            color: #6b7280;
+            margin-bottom: .2rem;
+        }
+
+        #linkBtn {
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            border: 0;
+            border-radius: 0.5rem;
+            background: #10b981;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #linkBtn:hover {
+            filter: brightness(.95);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>glurb</h1>
+    <button id="linkBtn">leave</button>
+    <ul id="chatLog"></ul>
+    <form id="chatForm" autocomplete="off" novalidate>
+        <textarea id="msgInput" rows="2" placeholder="Aa"></textarea>
+        <button id="sendBtn" type="submit">Send</button>
+    </form>
+
+    <h2>Online</h2>
+    <ul id="userList"></ul>
+
+    <!-- Socket.IO client, then your app -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+    <!-- index.html -->
+
+</body>
+
+</html>
